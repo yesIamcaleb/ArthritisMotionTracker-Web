@@ -1,6 +1,6 @@
 # Arthritis Motion Tracker — browser prototype
 
-**BMEN 220 research demonstration. Not a medical device or diagnostic tool.**
+**Group 4's BMEN 220 research demonstration, designed by Caleb Keaton with help from AI. ** Not a medical device or diagnostic tool.**
 
 This is the corrected browser-based migration of the working Python arthritis wrist-motion tracker. It uses the MediaPipe **Holistic Landmarker Web** package to detect an elbow, wrist, and middle-finger knuckle from a webcam, then estimates a calibrated 2D flexion/extension angle. It requires **no Python installation for website visitors**.
 
