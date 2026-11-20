@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#101c33" />
+<title>Arthritis Motion Tracker | Browser Prototype</title>
+<link rel="stylesheet" href="./style.css" />
+<script type="module" src="./app.js"></script>
+</head>
+<body>
+<div class="shell">
+<header class="top"><div class="brand"><span class="mark" aria-hidden="true">✳</span><div><strong>Arthritis Motion Tracker</strong><small>BMEN 220 · Browser prototype</small></div></div><span class="tag">On-device webcam tracking</span></header>
+<main>
+<section class="hero"><div><span class="eyebrow">LIVE ASSESSMENT</span><h1>Measure wrist motion.<br /><span>From any compatible browser.</span></h1><p>Use your own camera to estimate wrist flexion and extension. No Python installation required.</p></div><div class="notice"><strong>Research demonstration only</strong><span>Not a medical device, arthritis diagnosis, or clinically validated goniometer. Use a supported wrist position and stop if movements cause pain.</span></div></section>
+<div class="layout">
+<section class="panel tracking"><div class="sectionhead"><div><h2>Camera &amp; tracking</h2><p>Keep your elbow, wrist, and fingers visible for tracking.</p></div><span id="cameraBadge" class="pill">Camera off</span></div>
+<div class="viewer"><video id="video" playsinline autoplay muted aria-label="Local live camera view"></video><canvas id="overlay" aria-hidden="true"></canvas><div id="cameraPlaceholder" class="placeholder"><span class="cameraicon">◉</span><strong>Camera is not running</strong><span>Select “Start camera” to begin.</span></div></div>
+<div id="status" class="status" role="status" aria-live="polite">Ready. Camera permission will be requested when you start.</div>
+<div class="buttonrow"><button id="startCamera" class="primary">Start camera</button><button id="stopCamera" class="secondary" disabled>Stop camera</button></div>
+<div class="controls"><label for="handSelect">Wrist to assess</label><select id="handSelect"><option value="Right">Right wrist</option><option value="Left">Left wrist</option></select><p class="subtext">Use a side view of the chosen wrist. Keep your forearm steady and fully visible. Don't move the camera between trials.</p></div>
+<div class="stepgrid"><div class="step"><div class="stepnum">01</div><strong>Neutral calibration</strong><p>Hold your hand straight in line with your forearm.</p><button id="calibrate" class="secondary" disabled>Calibrate neutral</button></div><div class="step"><div class="stepnum">02</div><strong>Set flexion direction</strong><p>Bend your wrist toward your palm and hold it.</p><button id="setFlexion" class="secondary" disabled>Identify flexion</button></div></div>
+<div class="recordActions"><button id="record" class="primary" disabled>Start assessment</button><span id="recordBadge" class="pill">Not recording</span></div>
+<p class="help">While recording, slowly bend into flexion and hold your comfortable maximum for 1–2 seconds; then repeat for extension. Click “Stop &amp; save” to finish.</p>
+</section>
+<aside class="panel results"><div class="sectionhead"><div><h2>Live measurement</h2><p>Approximate 2D wrist angle</p></div></div><div class="measure"><span>Current movement</span><strong id="movement">—</strong></div><div class="measure"><span>Current angle</span><strong id="currentAngle">—</strong></div><div class="statgrid"><div class="stat"><span>Max flexion</span><strong id="maxFlexion">0.0°</strong></div><div class="stat"><span>Max extension</span><strong id="maxExtension">0.0°</strong></div></div><div class="debug"><p>Detected landmarks: <strong id="landmarkStatus">Waiting for camera</strong></p><p>Neutral calibration: <strong id="neutralStatus">Not set</strong></p><p>Flexion direction: <strong id="flexStatus">Not set</strong></p><p>Stable hold: <strong id="stabilityStatus">Waiting</strong></p></div><div class="note"><strong>Privacy by design</strong><p>Video is processed in your browser. This prototype does not upload webcam frames or assessment records to a server. You must download the MediaPipe library and model when you start.</p></div></aside>
+</div>
+<section class="panel history"><div class="sectionhead"><div><h2>Saved demonstration assessments</h2><p>Stored only in this browser on this device. Not shared across your group.</p></div><button id="exportCsv" class="secondary">Export CSV</button></div><div class="tablewrap"><table><thead><tr><th>Date &amp; time</th><th>Wrist</th><th>Max flexion</th><th>Max extension</th></tr></thead><tbody id="historyBody"><tr><td colspan="4">No saved assessments yet.</td></tr></tbody></table></div><div class="historyfoot"><span id="recordCount">0 assessments</span><button id="clearHistory" class="textbutton">Clear local history</button></div></section>
+</main><footer>BMEN 220 · Experimental engineering prototype · Not for clinical decisions</footer>
+</div>
+</body></html>
